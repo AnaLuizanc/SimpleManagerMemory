@@ -32,16 +32,25 @@ class SimpleMemoryManager {
                 return -1;
         }
 
-      
+        void free(int start, int n){
+            for(int i = start; i < n+start; i++)
+                memory[i] = 0;
+        }
 
         void show_memory(){
+            cout << "Memoria: ";
             for(int i=0; i<memory.size(); i++)
                 cout << memory[i]; 
             cout << endl;
         }
-
-
 };
+
+void showMessage(int indice){
+    if(indice != -1)
+        cout << "Alocacao bem sucedida, iniciando no indice " << indice << endl;
+    else
+        cout << "Falha na alocacao" << endl;
+}
 
 int main(){
     SimpleMemoryManager mem(10);
@@ -49,15 +58,16 @@ int main(){
     mem.show_memory();
 
     int indice = mem.alloc(3);
-    cout << endl << "Alocacao bem sucedida, iniciando no indice " << indice << endl;
+    showMessage(indice);
     mem.show_memory();
 
     indice = mem.alloc(4);
-    cout << endl << "Alocacao bem sucedida, iniciando no indice " << indice << endl;
+    showMessage(indice);
     mem.show_memory();
 
-    
-
+    mem.free(3,3);
+    cout << endl << "Liberando 3 bytes iniciando do indice 3" << endl;
+    mem.show_memory();
 
     return 0;
 }
