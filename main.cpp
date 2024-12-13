@@ -45,7 +45,8 @@ class SimpleMemoryManager {
         }
 };
 
-void showMessage(int indice){
+void showMessageAlloc(int indice, int bytes){
+    cout << "Tentando alocar " << bytes << " bytes..." << endl;
     if(indice != -1)
         cout << "Alocacao bem sucedida, iniciando no indice " << indice << endl;
     else
@@ -53,20 +54,25 @@ void showMessage(int indice){
 }
 
 int main(){
-    SimpleMemoryManager mem(10);
+    SimpleMemoryManager mem(20);
+    int bytes;
 
     mem.show_memory();
 
-    int indice = mem.alloc(3);
-    showMessage(indice);
+    bytes = 5;
+    int indice = mem.alloc(bytes);
+    showMessageAlloc(indice, bytes);
     mem.show_memory();
 
-    indice = mem.alloc(4);
-    showMessage(indice);
+    bytes = 8;
+    indice = mem.alloc(bytes);
+    showMessageAlloc(indice, bytes);
     mem.show_memory();
 
-    mem.free(3,3);
-    cout << endl << "Liberando 3 bytes iniciando do indice 3" << endl;
+    bytes = 5;
+    indice = 0;
+    mem.free(indice, bytes);
+    cout << endl << "Liberando " << bytes << " bytes iniciando do indice " << indice << endl;
     mem.show_memory();
 
     return 0;
