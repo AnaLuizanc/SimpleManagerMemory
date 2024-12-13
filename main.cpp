@@ -33,6 +33,7 @@ class SimpleMemoryManager {
         }
 
         void free(int start, int n){
+            cout << "Liberando " << n << " bytes iniciando do indice " << start << "..." << endl;
             for(int i = start; i < n+start; i++)
                 memory[i] = 0;
         }
@@ -72,7 +73,11 @@ int main(){
     bytes = 5;
     indice = 0;
     mem.free(indice, bytes);
-    cout << endl << "Liberando " << bytes << " bytes iniciando do indice " << indice << endl;
+    mem.show_memory();
+
+    bytes = 5;
+    indice = mem.alloc(bytes);
+    showMessageAlloc(indice, bytes);
     mem.show_memory();
 
     return 0;
