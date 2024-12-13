@@ -15,14 +15,17 @@ class SimpleMemoryManager {
             int largestSequence0 = 0;
             int indice = 0;
             for(int i=0; i<memory.size(); i++){
-                if(memory[i] == 0)
+                if(memory[i] == 0){
                     ++largestSequence0;
+                    if(largestSequence0 == n)
+                        break;
+                }
                 else{
                     largestSequence0 = 0;
                     indice = i;
                 }
             }
-            if(n < largestSequence0){
+            if(n <= largestSequence0){
                 if(indice != 0)
                     indice++;
                 for(int i = indice; i < n+indice; i++)
