@@ -25,12 +25,19 @@ class SimpleMemoryManager {
             if(n < largestSequence0){
                 if(indice != 0)
                     indice++;
-                for(int i = indice; i < n+indice; i++){
+                for(int i = indice; i < n+indice; i++)
                     memory[i] = 1;
-                }
                 return indice;
             }else
                 return -1;
+        }
+
+      
+
+        void show_memory(){
+            for(int i=0; i<memory.size(); i++)
+                cout << memory[i]; 
+            cout << endl;
         }
 
 
@@ -39,18 +46,17 @@ class SimpleMemoryManager {
 int main(){
     SimpleMemoryManager mem(10);
 
-    for(int i=0; i<mem.memory.size(); i++)
-        cout << mem.memory[i]; 
+    mem.show_memory();
 
     int indice = mem.alloc(3);
     cout << endl << "Alocacao bem sucedida, iniciando no indice " << indice << endl;
-    for(int i=0; i<mem.memory.size(); i++)
-        cout << mem.memory[i]; 
+    mem.show_memory();
 
     indice = mem.alloc(4);
     cout << endl << "Alocacao bem sucedida, iniciando no indice " << indice << endl;
-    for(int i=0; i<mem.memory.size(); i++)
-        cout << mem.memory[i]; 
+    mem.show_memory();
+
+    
 
 
     return 0;
